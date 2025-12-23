@@ -1,0 +1,90 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import { NAV_LINKS } from '../constants';
+
+const TopBar: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-light/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <a href="#" className="flex items-center gap-2" onClick={(e) => handleNavClick(e, '#home')}>
+              <span className={`font-bold text-xl tracking-tight transition-colors ${isScrolled ? 'text-dark' : 'text-dark'}`}>
+                NANDO-GP
+              </span>
+            </a>
+          </div>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex space-x-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-dark hover:text-primary font-medium text-sm transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-dark hover:text-primary focus:outline-none p-2"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-light border-t border-secondary/20 shadow-lg py-4 px-4 flex flex-col space-y-4">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-dark hover:text-primary font-medium text-lg block border-b border-secondary/10 pb-2"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default TopBar;
