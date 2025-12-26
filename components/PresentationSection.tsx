@@ -346,15 +346,34 @@ const PresentationSection: React.FC = () => {
                           <text x="0" y="95" textAnchor="middle" fill="#CFFAFE" fontSize="12" opacity="0.7" letterSpacing="2">KM/H</text>
                       </g>
 
-                      {/* 2. LEFT GAUGE (Fuel) */}
+                      {/* 2. LEFT GAUGE (Fuel) - RESTORED CIRCULAR TRACKS WITH NEW ICON */}
                       <g id="GaugeLeft" transform="translate(-190, 50)">
+                          {/* Circular Gauge Tracks (Restored) */}
                           <circle cx="0" cy="0" r="62" fill="none" stroke="#CFFAFE" strokeWidth="1" opacity="0.2" strokeDasharray="280 400" transform="rotate(135)" strokeLinecap="round" />
                           <circle cx="0" cy="0" r="54" fill="none" stroke="#CFFAFE" strokeWidth="6" opacity="0.1" strokeDasharray="240 400" transform="rotate(135)" strokeLinecap="round" />
                           <circle cx="0" cy="0" r="54" fill="none" stroke="#CFFAFE" strokeWidth="6" opacity="0.1" strokeDasharray="2 6" transform="rotate(135)" strokeLinecap="round" />
                           <circle cx="0" cy="0" r="54" fill="none" stroke="#CFFAFE" strokeWidth="6" opacity="0.9" strokeDasharray="180 400" transform="rotate(135)" strokeLinecap="round" />
-                          <g transform="translate(-14, -14) scale(1.4)" opacity="0.9" fill="#CFFAFE">
-                              <path d="M4,4 h12 a2,2 0 0,1 2,2 v14 a2,2 0 0,1 -2,2 h-12 a2,2 0 0,1 -2,-2 v-14 a2,2 0 0,1 2,-2 z M6,7 h8 v6 h-8 z M19,4 v14 h2 v-14 z M21,4 l-3,0" />
+
+                          {/* New Gasoline Pump Icon (Centered) */}
+                          <g transform="translate(0, 2) scale(1.8)" fill="#CFFAFE" opacity="0.95">
+                              {/* Pump Body with Screen Cutout */}
+                              <path 
+                                fillRule="evenodd"
+                                d="M-5,-9 H5 A1.5,1.5 0 0,1 6.5,-7.5 V7.5 A1.5,1.5 0 0,1 5,9 H-5 A1.5,1.5 0 0,1 -6.5,7.5 V-7.5 A1.5,1.5 0 0,1 -5,-9 Z M-3.5,-6 V-2 H3.5 V-6 H-3.5 Z" 
+                              />
+                              {/* Base */}
+                              <path d="M-7,9 H7 V11 H-7 Z" />
+                              {/* Nozzle Handle & Hose */}
+                              <path d="M6.5,-7 H8.5 A0.5,0.5 0 0,1 9,-6.5 V-0.5 H8 V-6 H6.5 V-7 Z" /> 
+                              <path d="M8,-0.5 H9 V5 A2,2 0 0,1 7,7 H5.5 V6 H7 A1,1 0 0,0 8,5 V-0.5 Z" />
+                              {/* Nozzle Gun Tip */}
+                              <path d="M8.5,-5.5 L10.5,-3.5 L8.5,-1.5 V-5.5 Z" />
                           </g>
+
+                          {/* Low Fuel Warning Dot (Positioned for circle) */}
+                          <circle cx="-25" cy="25" r="3" fill="#EF4444" opacity="0.8">
+                             <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite" />
+                          </circle>
                       </g>
 
                       {/* 3. RIGHT GAUGE (RPM) */}
@@ -455,8 +474,6 @@ const PresentationSection: React.FC = () => {
 
       {/* 3. LAYER: GRADIENT OVERLAY TOP */}
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-light/60 via-transparent to-transparent"></div>
-      
-      {/* 4. LAYER: BOTTOM GRADIENT OVERLAY - REMOVED COMPLETELY PER USER REQUEST */}
       
       {/* 5. LAYER: CONTENT */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 md:mt-24">

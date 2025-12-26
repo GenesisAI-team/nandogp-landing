@@ -5,8 +5,8 @@ export const NAV_LINKS = [
   { name: 'Inicio', href: '#home' },
   { name: 'Servicios', href: '#services' },
   { name: 'Cómo funciona', href: '#how-it-works' },
-  { name: 'Sobre nosotros', href: '#faq' }, // Using FAQ as value/about section proxy based on structure
-  { name: 'Contacto', href: '#footer' },
+  { name: 'Preguntas frecuentes', href: '#faq' }, // Using FAQ as value/about section proxy based on structure
+  //{ name: 'Contacto', href: '#footer' },
 ];
 
 export const SERVICES: ServiceItem[] = [
