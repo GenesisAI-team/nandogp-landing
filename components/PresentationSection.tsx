@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HERO_VIDEO_URL } from '../constants';
+import "../truck-cards.css";
 
 const PresentationSection: React.FC = () => {
   const [speed, setSpeed] = useState(62);
@@ -460,7 +461,7 @@ const PresentationSection: React.FC = () => {
       </div>
 
       {/* 2. LAYER: VIDEO OVERLAY - NO MASKS */}
-      <div className="absolute inset-0 z-10 w-full h-full overflow-hidden mix-blend-multiply opacity-20">
+      <div className="absolute inset-0 z-10 w-full h-full overflow-hidden mix-blend-multiply opacity-20 pointer-events-none">
         <video 
           className="w-full h-full object-cover"
           autoPlay 
@@ -473,25 +474,63 @@ const PresentationSection: React.FC = () => {
       </div>
 
       {/* 3. LAYER: GRADIENT OVERLAY TOP */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-light/60 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-light/60 via-transparent to-transparent pointer-events-none"></div>
       
       {/* 5. LAYER: CONTENT */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 md:mt-24">
-        <div className="flex flex-col items-center text-center">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-dark leading-[1.1] mb-4 drop-shadow-sm">
-              <span className="block">Precisa.</span>
-              <span className="block">Ágil.</span>
-              <span className="block text-primary">Segura.</span>
-            </h1>
-            
-            <div className="h-1.5 w-24 bg-accent rounded-full mb-6"></div>
 
-            <p className="text-lg md:text-xl text-dark/80 font-medium">
-              Transporte claro, sin rodeos.
-            </p>
+    <div
+      className="relative z-30 w-full max-w-7xl mx-auto mt-8 px-4 sm:px-6 md:mt-44 lg:mt-24 lg:px-8   min-h-[58vh] md:min-h-0 flex items-center justify-center
+      landscape:max-md:mt-0"
+    >
+      <div className="flex flex-row items-center gap-10 sm:gap-6 md:gap-10">
+        
+        {/* LEFT */}
+        <div className="relative z-50 shrink-0 self-start sm:self-auto">
+          <div className="stack">
+            <div className="card">
+              <div className="image">
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Truck%20Detailing.jpg"
+                  alt="Camión"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* CENTER */}
+        <div className="flex flex-col items-center text-center min-w-0 px-1 sm:px-2 sm:mx-20">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-dark leading-[1.05] mb-3 sm:mb-4 drop-shadow-sm 
+          landscape:max-md:text-5xl">
+            <span className="block">Precisa.</span>
+            <span className="block">Ágil.</span>
+            <span className="block text-primary">Segura.</span>
+          </h1>
+
+          <div className="h-1.5 w-20 sm:w-24 bg-accent rounded-full mb-4 sm:mb-6 landscape:max-md:hidden "></div>
+
+          <p className="text-base sm:text-lg md:text-xl text-dark/80 font-medium mb-8 sm:mb-10 max-w-[28ch] landscape:max-md:text-sm">
+            Transporte claro, sin rodeos.
+          </p>
+        </div>
+
+        {/* RIGHT */}
+        <div className="relative z-50 shrink-0">
+          <div className="stackInsideRotation">
+            <div className="card">
+              <div className="image">
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Truck%20Detailing.jpg"
+                  alt="Camión"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      
+    </div>
+
     </section>
   );
 };
