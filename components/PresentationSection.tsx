@@ -480,7 +480,7 @@ const PresentationSection: React.FC = () => {
 
     <div
       className="relative z-30 w-full max-w-7xl mx-auto mt-8 px-4 sm:px-6 md:mt-44 lg:mt-24 lg:px-8   min-h-[58vh] md:min-h-0 flex items-center justify-center
-      landscape:max-md:mt-0"
+      landscape:max-md:mt-8"
     >
       <div className="flex flex-row items-center gap-10 sm:gap-6 md:gap-10">
         
