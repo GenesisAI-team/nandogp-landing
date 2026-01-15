@@ -480,7 +480,8 @@ const PresentationSection: React.FC = () => {
 
     <div
       className="relative z-30 w-full max-w-7xl mx-auto mt-8 px-4 sm:px-6 md:mt-44 lg:mt-24 lg:px-8   min-h-[58vh] md:min-h-0 flex items-center justify-center
-      landscape:max-md:mt-8"
+      landscape:max-md:mt-7
+      landscape:max-lg:mt-16"
     >
       <div className="flex flex-row items-center gap-10 sm:gap-6 md:gap-10">
         
@@ -501,15 +502,16 @@ const PresentationSection: React.FC = () => {
         {/* CENTER */}
         <div className="flex flex-col items-center text-center min-w-0 px-1 sm:px-2 sm:mx-20">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-dark leading-[1.05] mb-3 sm:mb-4 drop-shadow-sm 
-          landscape:max-md:text-5xl">
+          landscape:max-md:text-5xl
+          landscape:max-lg:text-4xl">
             <span className="block">Precisa.</span>
             <span className="block">Ágil.</span>
             <span className="block text-primary">Segura.</span>
           </h1>
 
-          <div className="h-1.5 w-20 sm:w-24 bg-accent rounded-full mb-4 sm:mb-6 landscape:max-md:hidden "></div>
+          <div className="h-1.5 w-20 sm:w-24 bg-accent rounded-full mb-4 sm:mb-6 landscape:max-md:hidden landscape:max-lg:hidden "></div>
 
-          <p className="text-base sm:text-lg md:text-xl text-dark/80 font-medium mb-8 sm:mb-10 max-w-[28ch] landscape:max-md:text-sm">
+          <p className="text-base sm:text-lg md:text-xl text-dark/80 font-medium mb-8 sm:mb-10 max-w-[28ch] landscape:max-lg:text-sm">
             Transporte claro, sin rodeos.
           </p>
         </div>
