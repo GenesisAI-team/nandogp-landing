@@ -491,7 +491,7 @@ const PresentationSection: React.FC = () => {
             <div className="card">
               <div className="image">
                 <img
-                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Truck%20Detailing.jpg"
+                  src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/worker-outside-van.avif"
                   alt="Camión"
                 />
               </div>
@@ -522,7 +522,7 @@ const PresentationSection: React.FC = () => {
             <div className="card">
               <div className="image">
                 <img
-                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Truck%20Detailing.jpg"
+                  src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/delivery-van-packed-with-boxes-warehouse.avif"
                   alt="Camión"
                 />
               </div>

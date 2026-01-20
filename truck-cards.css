@@ -21,7 +21,7 @@
   width:  clamp(100px, 18vw, 300px); /* Fixed: Reduced size from 55% to fixed px to prevent "too big" look */
   max-width: 100%;
   transition: 0.25s ease;
-  transform: rotate(-10deg);
+  transform: rotate(10deg);
   z-index: 10; /* Fixed: Base z-index so they stack correctly */
 }
 .stackInsideRotation:hover {
