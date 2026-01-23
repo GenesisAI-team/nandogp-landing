@@ -477,60 +477,65 @@ const PresentationSection: React.FC = () => {
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-light/60 via-transparent to-transparent pointer-events-none"></div>
       
       {/* 5. LAYER: CONTENT */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto mt-20 pt-10 px-4 sm:px-6 lg:px-8 min-h-[58vh] md:min-h-0 flex 
+    flex-col
+    items-center justify-start 
+  landscape:max-md:mt-7 landscape:max-lg:mt-16">
+      
+        {/* TEXT CONTENT */}
+        <div className="relative z-20 flex flex-col items-center text-center min-w-0 px-1 sm:px-2 sm:mx-20 ">
+            <h1 className="text-5xl font-bold landscape:text-3xl md:landscape:text-5xl">
+              <span className="block">Transportes.</span>
+              <span className="block">Mudanzas.</span>
+              <span className="block text-primary">Express.</span>
+            </h1>
 
-    <div
-      className="relative z-30 w-full max-w-7xl mx-auto mt-8 px-4 sm:px-6 md:mt-44 lg:mt-24 lg:px-8   min-h-[58vh] md:min-h-0 flex items-center justify-center
-      landscape:max-md:mt-7
-      landscape:max-lg:mt-16"
-    >
-      <div className="flex flex-row items-center gap-10 sm:gap-6 md:gap-10">
+            <div className="h-1.5 w-20 sm:w-24 bg-accent rounded-full mt-1.5 mb-4 sm:mb-6 landscape:mb-2 " />
+
+            <p className="text-lg text-dark/100 font-medium max-w-[28ch] landscape:text-sm md:landscape:text-xl lg:landscape:text-xl">
+              Muebles, oficinas y mercancía.
+            </p>
+            <p className="text-lg text-dark/100 font-medium max-w-[28ch] landscape:text-sm md:landscape:text-xl lg:landscape:text-xl mb-8 sm:mb-10 ">
+              En toda España.
+            </p>
+        </div>
         
-        {/* LEFT */}
-        <div className="relative z-50 shrink-0 self-start sm:self-auto">
-          <div className="stack">
+        {/* CAPA DECORATIVA (cards detrás) */}
+        
+        {/* Card izquierda - Mobile: Bottom Left | Desktop: Top Left (Flanking Text) */}
+        <div className="absolute z-10 
+                        bottom-10 -left-2 
+                        md:bottom-auto md:top-40 md:left-4 
+                        lg:top-16 lg:left-12">
+            <div className="stack">
             <div className="card">
-              <div className="image">
+                <div className="image">
                 <img
-                  src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/worker-outside-van.avif"
-                  alt="Camión"
+                    src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/worker-outside-van.avif"
+                    alt=""
                 />
-              </div>
+                </div>
             </div>
-          </div>
-        </div>
-
-        {/* CENTER */}
-        <div className="flex flex-col items-center text-center min-w-0 px-1 sm:px-2 sm:mx-20">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-dark leading-[1.05] mb-3 sm:mb-4 drop-shadow-sm 
-          landscape:max-md:text-5xl
-          landscape:max-lg:text-4xl">
-            <span className="block">Precisa.</span>
-            <span className="block">Ágil.</span>
-            <span className="block text-primary">Segura.</span>
-          </h1>
-
-          <div className="h-1.5 w-20 sm:w-24 bg-accent rounded-full mb-4 sm:mb-6 landscape:max-md:hidden landscape:max-lg:hidden "></div>
-
-          <p className="text-base sm:text-lg md:text-xl text-dark/80 font-medium mb-8 sm:mb-10 max-w-[28ch] landscape:max-lg:text-sm">
-            Transporte claro, sin rodeos.
-          </p>
-        </div>
-
-        {/* RIGHT */}
-        <div className="relative z-50 shrink-0">
-          <div className="stackInsideRotation">
-            <div className="card">
-              <div className="image">
-                <img
-                  src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/delivery-van-packed-with-boxes-warehouse.avif"
-                  alt="Camión"
-                />
-              </div>
             </div>
-          </div>
         </div>
 
-      </div>
+        {/* Card derecha - Mobile: Bottom Right | Desktop: Top Right (Flanking Text) */}
+        <div className="absolute z-10 
+                        bottom-10 -right-2 
+                        md:bottom-auto md:top-40 md:right-4 
+                        lg:top-16 lg:right-12">
+            <div className="stackInsideRotation">
+                <div className="card">
+                <div className="image">
+                    <img
+                    src="https://lmazbqzrsywkkqjt.public.blob.vercel-storage.com/delivery-van-packed-with-boxes-warehouse.avif"
+                    alt=""
+                    />
+                </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     </section>

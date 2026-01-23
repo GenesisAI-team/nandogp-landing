@@ -1,4 +1,4 @@
-import { Truck, MapPin, Package, Building2, ShieldCheck, Warehouse, Phone, CalendarCheck, CheckCircle2 } from 'lucide-react';
+import { Truck, MapPin, Package, Building2, ShieldCheck, Warehouse, Phone, CalendarCheck, CheckCircle2 ,Trash2, Hammer} from 'lucide-react';
 import { FaqItem, ServiceItem, StepItem } from './types';
 
 export const NAV_LINKS = [
@@ -12,40 +12,52 @@ export const NAV_LINKS = [
 export const SERVICES: ServiceItem[] = [
   {
     id: 1,
-    title: 'Mudanzas locales',
+    title: 'Mudanzas Locales',
     description: 'Gestión integral de traslados dentro de la ciudad y provincia.',
     icon: Truck,
   },
   {
     id: 2,
-    title: 'Mudanzas nacionales',
+    title: 'Mudanzas Nacionales',
     description: 'Logística coordinada para larga distancia en toda la península.',
     icon: MapPin,
   },
   {
     id: 3,
-    title: 'Portes rápidos',
-    description: 'Transporte ágil de objetos voluminosos o cargas pequeñas.',
-    icon: Package,
-  },
-  {
-    id: 4,
-    title: 'Mudanzas de oficina',
+    title: 'Mudanzas de Oficina',
     description: 'Traslados corporativos minimizando el tiempo de inactividad.',
     icon: Building2,
   },
   {
+    id: 4,
+    title: 'Portes Express',
+    description: 'Transporte ágil de objetos voluminosos o cargas pequeñas.',
+    icon: Package,
+  },
+   {
     id: 5,
-    title: 'Embalaje y protección',
+    title: 'Vaciado de Locales',
+    description: 'Desalojo integral y limpieza de espacios para dejarlos listos para su uso.',
+    icon: Trash2,
+  },
+  {
+    id: 6,
+    title: 'Montaje de Muebles',
+    description: 'Ensamblaje profesional, seguro y eficiente de todo tipo de mobiliario.',
+    icon: Hammer,
+  },
+  {
+    id: 7,
+    title: 'Embalaje y Protección',
     description: 'Materiales de alta resistencia y técnica profesional de empaquetado.',
     icon: ShieldCheck,
   },
   {
-    id: 6,
+    id: 8,
     title: 'Almacenamiento',
     description: 'Soluciones temporales de guardamuebles seguros y vigilados.',
     icon: Warehouse,
-  },
+  }
 ];
 
 export const HOW_IT_WORKS_STEPS: StepItem[] = [
