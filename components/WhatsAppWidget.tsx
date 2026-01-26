@@ -1,200 +1,45 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, X, Paperclip } from 'lucide-react';
-import { ChatMessage } from '../types';
-
-const INITIAL_MESSAGES: ChatMessage[] = [
-  {
-    id: 'welcome-1',
-    text: '¡Hola! Soy el asistente de NANDO-GP 🚚 ¿Qué necesitas: mudanza, portes o transporte de oficina?',
-    sender: 'bot',
-    timestamp: new Date()
-  }
-];
+import React from "react";
 
 const WhatsAppWidget: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
-  const [inputText, setInputText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  // Número de teléfono en formato internacional (sin el +)
+  const phoneNumber = "34605474930";
+  const message =
+    "Hola, me gustaría pedir información sobre una mudanza o transporte.";
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, isOpen]);
-
-  // Focus input when opening
-  useEffect(() => {
-    if (isOpen && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 300);
-    }
-  }, [isOpen]);
-
-  const handleSendMessage = async () => {
-    if (!inputText.trim()) return;
-
-    const userMsg: ChatMessage = {
-      id: Date.now().toString(),
-      text: inputText,
-      sender: 'user',
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMsg]);
-    setInputText('');
-    setIsTyping(true);
-
-    // TODO: FUTURE INTEGRATION WITH N8N WEBHOOK
-    // Example: await fetch('YOUR_N8N_WEBHOOK_URL', { method: 'POST', body: JSON.stringify({ message: inputText }) });
-
-    // Mock response logic for MVP
-    setTimeout(() => {
-      const botResponses = [
-        "¡Entendido! Un agente revisará tu solicitud enseguida.",
-        "Dime origen, destino y fecha aproximada y te digo disponibilidad.",
-        "Perfecto, tomamos nota. ¿Necesitas también embalaje?",
-      ];
-      
-      const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-      
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        text: randomResponse,
-        sender: 'bot',
-        timestamp: new Date()
-      };
-      
-      setMessages(prev => [...prev, botMsg]);
-      setIsTyping(false);
-    }, 1500);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSendMessage();
-    }
-  };
+  // Función para construir la URL correcta
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <>
-      {/* Floating Action Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-dark border-2 border-accent shadow-xl flex items-center justify-center text-white transition-transform hover:scale-105 active:scale-95 ${isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`}
-        aria-label="Chat en WhatsApp"
-      >
-        <MessageCircle size={32} />
-        {/* Notification dot */}
-        <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full border-2 border-dark"></span>
-      </button>
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 group transition-transform hover:scale-110 active:scale-95"
+      aria-label="Contactar por WhatsApp"
+    >
+      {/* Círculo verde de fondo */}
+      <div className="w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.3)] relative overflow-hidden">
+        {/* Efecto de brillo/reflejo sutil */}
+        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity rounded-full"></div>
 
-      {/* Modal Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            {/* Backdrop with blur */}
-            <div 
-                className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
-                onClick={() => setIsOpen(false)}
-            ></div>
+        {/* Icono de WhatsApp (SVG) */}
+        {/* Usamos el SVG oficial o uno muy parecido para que sea reconocible al instante */}
+        <svg viewBox="0 0 24 24" width="32" height="32" className="fill-white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+      </div>
 
-            {/* Smartphone Container */}
-            <div className="relative w-full max-w-[360px] h-[650px] max-h-[85vh] bg-[#E5DDD5] rounded-[3rem] border-[8px] border-dark shadow-2xl flex flex-col overflow-hidden animate-[fadeIn_0.3s_ease-out]">
-                
-                {/* Notch / Dynamic Island */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-dark rounded-b-xl z-20"></div>
+      {/* Punto de notificación (opcional, para llamar la atención) */}
+      <span className="absolute top-0 right-0 flex h-4 w-4">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+      </span>
 
-                {/* Header */}
-                <div className="bg-gradient-to-r from-dark to-primary p-4 pt-10 pb-3 flex items-center justify-between shadow-sm z-10 text-white">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold border border-white/30">
-                            F
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-sm">NANDO-GP</h3>
-                            <p className="text-xs text-white/80">En línea</p>
-                        </div>
-                    </div>
-                    <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">
-                        <X size={24} />
-                    </button>
-                </div>
-
-                {/* Chat Area (Scrollable) */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 chat-scroll bg-[#EFE8DE]" style={{ backgroundImage: 'radial-gradient(#A69F91 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
-                    {messages.map((msg) => (
-                        <div 
-                            key={msg.id} 
-                            className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                        >
-                            <div 
-                                className={`max-w-[80%] p-3 rounded-lg text-sm shadow-sm relative ${
-                                    msg.sender === 'user' 
-                                    ? 'bg-[#E7FFDB] text-gray-800 rounded-tr-none' 
-                                    : 'bg-white text-gray-800 rounded-tl-none'
-                                }`}
-                            >
-                                {msg.text}
-                                <span className="text-[10px] text-gray-400 block text-right mt-1">
-                                    {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                    
-                    {isTyping && (
-                        <div className="flex justify-start">
-                             <div className="bg-white p-3 rounded-lg rounded-tl-none shadow-sm flex gap-1">
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></span>
-                                <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></span>
-                             </div>
-                        </div>
-                    )}
-                    <div ref={messagesEndRef} />
-                </div>
-
-                {/* Input Area */}
-                <div className="bg-[#F0F2F5] p-3 flex items-center gap-2">
-                    <button className="text-secondary p-2 hover:bg-gray-200 rounded-full transition-colors">
-                        <Paperclip size={20} />
-                    </button>
-                    <div className="flex-1 relative">
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            value={inputText}
-                            onChange={(e) => setInputText(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            placeholder="Escribe un mensaje"
-                            className="w-full bg-white border-none rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                    </div>
-                    <button 
-                        onClick={handleSendMessage}
-                        disabled={!inputText.trim()}
-                        className={`p-3 rounded-full flex items-center justify-center transition-all ${
-                            inputText.trim() 
-                            ? 'bg-primary text-white hover:bg-[#724b2f]' 
-                            : 'bg-gray-200 text-gray-400'
-                        }`}
-                    >
-                        <Send size={18} />
-                    </button>
-                </div>
-
-                {/* Bottom Safe Area indicator */}
-                <div className="bg-[#F0F2F5] h-5 w-full flex justify-center items-start">
-                     <div className="w-32 h-1 bg-gray-300 rounded-full"></div>
-                </div>
-            </div>
-        </div>
-      )}
-    </>
+      {/* Tooltip opcional */}
+      <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-dark/80 text-white text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        ¡Escríbenos!
+      </span>
+    </a>
   );
 };
 
