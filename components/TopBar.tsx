@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom"; // Importamos hooks de navegación
 import { NAV_LINKS } from "../constants";
 
 const TopBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Hooks para saber dónde estamos y poder navegar
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Detectamos si estamos en una página legal
+  const isLegalPage = location.pathname.includes("/legal");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,16 +28,33 @@ const TopBar: React.FC = () => {
   ) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+
+    // Lógica inteligente de navegación
+    if (location.pathname === "/") {
+      // Si estamos en HOME, hacemos scroll normal
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Si estamos en LEGAL, vamos a Home y luego hacemos scroll
+      navigate("/");
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "auto" });
+        }
+      }, 100);
     }
   };
+
+  // El header tendrá fondo SÓLIDO si: hay scroll, menú abierto O estamos en página legal
+  const shouldShowBackground = isScrolled || mobileMenuOpen || isLegalPage;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen
+        shouldShowBackground
           ? "bg-light/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
@@ -39,7 +64,7 @@ const TopBar: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0 z-50">
             <a
-              href="#"
+              href="/" // Cambiado a / para recargar si hace falta
               className="flex items-center gap-2"
               onClick={(e) => handleNavClick(e, "#home")}
             >
@@ -49,7 +74,7 @@ const TopBar: React.FC = () => {
             </a>
           </div>
 
-          {/* Desktop Nav - Oculto en móviles grandes rotados */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex landscape:max-lg:hidden space-x-8">
             {NAV_LINKS.map((link) => (
               <a
@@ -64,7 +89,7 @@ const TopBar: React.FC = () => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button - Visible en móviles y landscape hasta LG */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden landscape:max-lg:block z-50">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -77,7 +102,7 @@ const TopBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay - PANTALLA COMPLETA */}
+      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div className="md:hidden landscape:max-lg:flex fixed inset-0 z-40 bg-light flex flex-col items-center justify-center h-screen w-screen overflow-y-auto">
           <div className="flex flex-col space-y-8 text-center p-4">
