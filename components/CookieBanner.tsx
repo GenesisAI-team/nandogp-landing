@@ -5,7 +5,7 @@ const CookieBanner: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Comprobamos si ya aceptó las cookies
+    // Comprobamos si ya aceptó las cookiess
     const cookiesAccepted = localStorage.getItem("cookies-accepted");
     if (!cookiesAccepted) {
       // Pequeño delay para que no salga de golpe al cargar
