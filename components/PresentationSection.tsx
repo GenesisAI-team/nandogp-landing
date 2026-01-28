@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { HERO_VIDEO_URL } from "../constants";
 import "../truck-cards.css";
 import DrivingScene from "./DrivingScene";
 
@@ -63,23 +62,10 @@ const PresentationSection: React.FC = () => {
         isSignActive={isSignActive}
       />
 
-      {/* 2. LAYER: VIDEO OVERLAY - NO MASKS */}
-      <div className="absolute inset-0 z-10 w-full h-full overflow-hidden mix-blend-multiply opacity-20 pointer-events-none">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src={HERO_VIDEO_URL} type="video/mp4" />
-        </video>
-      </div>
-
-      {/* 3. LAYER: GRADIENT OVERLAY TOP */}
+      {/* 2. LAYER: GRADIENT OVERLAY TOP */}
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-light/60 via-transparent to-transparent pointer-events-none"></div>
 
-      {/* 5. LAYER: CONTENT */}
+      {/* 3. LAYER: CONTENT */}
       {/* UPDATE: Usamos max-lg en landscape para coger también los iphone Plus y Max */}
       <div
         className="relative z-30 w-full max-w-7xl mx-auto mt-20 pt-10 px-4 sm:px-6 lg:px-8 min-h-[58vh] md:min-h-0 flex 

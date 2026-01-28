@@ -108,7 +108,3 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer: 'Recomendamos al menos 15 días de antelación, especialmente para finales de mes y viernes.',
   },
 ];
-
-// Placeholder for the video. In a real scenario, this would be a local import or asset URL.
-// Using a generic driving/road video for demonstration.
-export const HERO_VIDEO_URL = "https://videos.pexels.com/video-files/2883395/2883395-sd_640_360_24fps.mp4";
