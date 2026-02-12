@@ -52,12 +52,14 @@ export const SERVICES: ServiceItem[] = [
     description: 'Materiales de alta resistencia y técnica profesional de empaquetado.',
     icon: ShieldCheck,
   },
+  /*
   {
     id: 8,
     title: 'Almacenamiento',
     description: 'Soluciones temporales de guardamuebles seguros y vigilados.',
     icon: Warehouse,
   }
+    */
 ];
 
 export const HOW_IT_WORKS_STEPS: StepItem[] = [
