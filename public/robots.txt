@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Enlace al sitemap generado
+Sitemap: https://www.transportesnandogp.com/sitemap.xml

@@ -8,6 +8,7 @@ import WhatsAppWidget from "./components/WhatsAppWidget";
 import HomePage from "./pages/HomePage";
 import LegalPage from "./pages/LegalPage";
 import CookieBanner from "./components/CookieBanner";
+import { SEO } from "./components/SEO";
 
 const App: React.FC = () => {
   return (
@@ -19,24 +20,65 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             {/* Ruta Principal (Landing) */}
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={
+                <>
+                  <SEO
+                    title="NANDO-GP Transportes | Mudanzas y portes en toda España"
+                    description="Empresa de mudanzas y transportes con sede en Navarra. Realizamos mudanzas locales, nacionales, de oficina, portes express y montaje de muebles en toda España."
+                  />
+                  <HomePage />
+                </>
+              } 
+            />
 
             {/* Rutas Legales (URLs estáticas para Meta) */}
             <Route
               path="/legal/aviso-legal"
-              element={<LegalPage type="aviso-legal" />}
+              element={
+                <>
+                  <SEO
+                    title="Aviso Legal | NANDO-GP"
+                    description="Información legal sobre NANDO-GP: responsable del sitio, NIF, domicilio en Burlada (Navarra) y condiciones de uso."
+                  />
+                  <LegalPage type="aviso-legal" />
+                </>
+              }
             />
             <Route
               path="/legal/privacidad"
-              element={<LegalPage type="privacidad" />}
+              element={
+                <>
+                  <SEO
+                    title="Política de Privacidad | NANDO-GP"
+                    description="Cómo tratamos tus datos personales cuando contratas nuestros servicios de mudanzas y portes: datos recogidos, finalidad, legitimación y derechos del usuario."
+                  />
+                  <LegalPage type="privacidad" />
+                </>
+              }
             />
             <Route
               path="/legal/terminos"
-              element={<LegalPage type="terminos" />}
+              element={
+                <>
+                  <SEO
+                    title="Términos y Condiciones | NANDO-GP"
+                    description="Condiciones generales de nuestros servicios de mudanzas y portes: identificación del proveedor, servicios ofrecidos, responsabilidad y tarifas."
+                  />
+                  <LegalPage type="terminos" />
+                </>
+              }
             />
             <Route
               path="/legal/cookies"
-              element={<LegalPage type="cookies" />}
+              element={
+                <>
+                <SEO
+                  title="Política de Cookies | NANDO-GP"
+                  description="Información sobre el uso de cookies en NANDO-GP: qué son, qué cookies se utilizan (solo técnicas necesarias) y cómo desactivarlas."
+                />
+                  <LegalPage type="cookies" />
+                </>
+                }
             />
 
             {/* Ruta 404 (Opcional, redirige a home por ahora) */}
