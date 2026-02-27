@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
                   href="mailto:eonandogp@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  eonandogp@gmail.com
+                  transportesymudanzasnandogp@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
