@@ -9,6 +9,17 @@ import HomePage from "./pages/HomePage";
 import LegalPage from "./pages/LegalPage";
 import CookieBanner from "./components/CookieBanner";
 import { SEO } from "./components/SEO";
+import { JsonLd } from "./components/JsonLd";
+import {
+  ORG_NANDO,
+  SERVICE_MUDANZAS_LOCALES,
+  SERVICE_MUDANZAS_NACIONALES,
+  SERVICE_MUDANZAS_OFICINA,
+  SERVICE_PORTES_EXPRESS,
+  SERVICE_VACIADO_LOCALES,
+  SERVICE_MONTAJE_MUEBLES,
+  FAQ_NANDO,
+} from "./data/jsonLdData";
 
 const App: React.FC = () => {
   return (
@@ -25,6 +36,19 @@ const App: React.FC = () => {
                   <SEO
                     title="NANDO-GP Transportes | Mudanzas y portes en toda España"
                     description="Empresa de mudanzas y transportes con sede en Navarra. Realizamos mudanzas locales, nacionales, de oficina, portes express y montaje de muebles en toda España."
+                  />
+                  <JsonLd
+                    id="jsonld-home"
+                    data={[
+                      ORG_NANDO,
+                      SERVICE_MUDANZAS_LOCALES,
+                      SERVICE_MUDANZAS_NACIONALES,
+                      SERVICE_MUDANZAS_OFICINA,
+                      SERVICE_PORTES_EXPRESS,
+                      SERVICE_VACIADO_LOCALES,
+                      SERVICE_MONTAJE_MUEBLES,
+                      FAQ_NANDO,
+                    ]}
                   />
                   <HomePage />
                 </>
